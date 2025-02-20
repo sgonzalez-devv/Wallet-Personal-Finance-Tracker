@@ -16,9 +16,9 @@ export default function RestrictedAccessPage() {
   }, [])
 
   return (
-    <div className="min-h-screen overflow-hidden relative bg-black">
+    <div className="min-h-screen overflow-hidden relative">
       <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-green-600 to-green-800"
+        className="absolute inset-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
