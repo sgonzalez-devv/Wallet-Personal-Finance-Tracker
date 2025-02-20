@@ -8,7 +8,7 @@ import { ArrowLeft, Rocket, Lock } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 export default function RestrictedAccessPage() {
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [, setIsLoaded] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function RestrictedAccessPage() {
               <Lock className="w-16 h-16 mx-auto text-green-600 mb-4" />
               <h2 className="text-3xl sm:text-4xl font-bold text-green-700 mb-4">Feature Locked</h2>
               <p className="text-xl text-gray-600 mb-6">
-                Your current plan doesn't include access to this premium feature. Upgrade your plan to unlock a world of
+                Your current plan doesn&apos;t include access to this premium feature. Upgrade your plan to unlock a world of
                 advanced financial tools and insights!
               </p>
             </motion.div>

@@ -3,7 +3,6 @@ import Header from "@/components/header";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
-
 export default function AboutPage() {
     return (
         <div className="min-h-screen bg-white text-black flex flex-col">
@@ -22,10 +21,10 @@ export default function AboutPage() {
                                 take control of their personal finances.
                             </p>
                             <p>
-                                Managing money shouldn't be complicated. That's why we built Digits, a smart finance tracker that helps you
-                                budget wisely, track expenses effortlessly, and achieve your financial goals with confidence. Whether you're
+                                Managing money shouldn&apos;t be complicated. That&apos;s why we built Digits, a smart finance tracker that helps you
+                                budget wisely, track expenses effortlessly, and achieve your financial goals with confidence. Whether you&apos;re
                                 saving for your dream vacation, paying off debt, or simply looking for a better way to manage your daily
-                                spending, we've got you covered.
+                                spending, we&apos;ve got you covered.
                             </p>
                             <p>
                                 Our team of finance enthusiasts, tech experts, and problem-solvers is dedicated to making money management
@@ -53,7 +52,6 @@ export default function AboutPage() {
                             <Button variant="secondary" size="lg">
                                 Sign Up for Free
                             </Button>
-
                         </div>
                     </div>
                 </section>
@@ -62,4 +60,3 @@ export default function AboutPage() {
         </div>
     )
 }
-

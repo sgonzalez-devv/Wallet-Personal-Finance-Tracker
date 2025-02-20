@@ -64,7 +64,7 @@ export function NFCSidewardChart() {
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value: any) => value.slice(0, 3)}
+              tickFormatter={(value: string) => value.slice(0, 3)}
               hide
             />
             <XAxis dataKey="desktop" type="number" hide />

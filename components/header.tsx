@@ -2,12 +2,11 @@
 
 import { Button } from "@/components/ui/button"
 import { Wallet, X } from "lucide-react"
-import { Facebook, Twitter, Instagram, Linkedin, ArrowUpRight } from "lucide-react"
+import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext"
-import { User } from "firebase/auth"
 
 const navigation = {
     main: [
@@ -32,7 +31,7 @@ export default function Header() {
         <div>
             <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
                 <div className="flex justify-between items-center py-3 px-4 sm:px-8 max-w-7xl mx-auto">
-                    <Link href={'/'} className="flex items-center gap-2 sm:gap-4">
+                    <Link href={"/"} className="flex items-center gap-2 sm:gap-4">
                         <Wallet className="text-green-700 h-6 w-6" />
                         <h1 className="font-bold text-lg sm:text-xl">Wallet Finance Tracker</h1>
                     </Link>
