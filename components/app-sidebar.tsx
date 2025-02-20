@@ -35,19 +35,19 @@ const data = {
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "Personal Workspace",
       logo: GalleryVerticalEnd,
-      plan: "Enterprise",
+      plan: "Personal Finance",
     },
     {
-      name: "Acme Corp.",
+      name: "Investment Workspace",
       logo: AudioWaveform,
-      plan: "Startup",
+      plan: "Investment Portfolio",
     },
     {
-      name: "Evil Corp.",
+      name: "House Workspace",
       logo: Command,
-      plan: "Free",
+      plan: "House Finance",
     },
   ],
   navMain: [

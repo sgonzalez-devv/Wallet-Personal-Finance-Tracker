@@ -48,7 +48,7 @@ export default function Header() {
                         ))}
                         <div>
                             {user ? (
-                                <Button variant={'ghost'} onClick={() => router.push("/dashboard")}>Go to Dashboard</Button>
+                                <Button variant={'ghost'} onClick={() => router.push("/application/dashboard")}>Go to Dashboard</Button>
                             ) : (
                                 <>
                                     <Button variant="ghost" className="font-semibold" onClick={() => router.push('/auth')}>
