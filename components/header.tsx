@@ -6,6 +6,8 @@ import { Facebook, Twitter, Instagram, Linkedin, ArrowUpRight } from "lucide-rea
 import Link from "next/link"
 import { useState } from "react"
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext"
+import { User } from "firebase/auth"
 
 const navigation = {
     main: [
@@ -24,13 +26,10 @@ const navigation = {
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const router = useRouter();
+    const { user } = useAuth();
 
-    const handleAuthRedirect = () => {
-        router.push('/auth');
-    }
     return (
         <div>
-            {/* Header */}
             <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
                 <div className="flex justify-between items-center py-3 px-4 sm:px-8 max-w-7xl mx-auto">
                     <Link href={'/'} className="flex items-center gap-2 sm:gap-4">
@@ -47,10 +46,18 @@ export default function Header() {
                                 {item.name}
                             </a>
                         ))}
-                        <Button variant="ghost" className="font-semibold" onClick={handleAuthRedirect}>
-                            Log In
-                        </Button>
-                        <Button className="rounded-full px-5 py-2" onClick={handleAuthRedirect}>Get Started</Button>
+                        <div>
+                            {user ? (
+                                <Button variant={'ghost'} onClick={() => router.push("/dashboard")}>Go to Dashboard</Button>
+                            ) : (
+                                <>
+                                    <Button variant="ghost" className="font-semibold" onClick={() => router.push('/auth')}>
+                                        Log In
+                                    </Button>
+                                    <Button className="rounded-full px-5 py-2" onClick={() => router.push('/auth')}>Get Started</Button>
+                                </>
+                            )}
+                        </div>
                     </nav>
                     <Button variant="ghost" className="sm:hidden" onClick={() => setMobileMenuOpen(true)}>
                         <svg
@@ -64,10 +71,11 @@ export default function Header() {
                         </svg>
                     </Button>
                 </div>
-            </header>
+            </header >
 
             {/* Mobile menu */}
-            <div className={`fixed inset-y-0 right-0 z-50 w-full bg-white transform ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out sm:hidden`}>
+            <div className={`fixed inset-y-0 right-0 z-50 w-full bg-white transform ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out sm:hidden`
+            }>
                 <div className="flex items-center justify-between p-4">
                     <div className="flex items-center gap-2">
                         <Wallet className="text-green-700 h-6 w-6" />
@@ -88,12 +96,12 @@ export default function Header() {
                             {item.name}
                         </a>
                     ))}
-                    <Button variant="ghost" className="w-full justify-start text-base font-medium text-gray-900 hover:bg-gray-50 py-2" onClick={handleAuthRedirect}>
+                    <Button variant="ghost" className="w-full justify-start text-base font-medium text-gray-900 hover:bg-gray-50 py-2" onClick={() => router.push('/auth')}>
                         Log In
                     </Button>
-                    <Button className="w-full mt-4 rounded-full py-2" onClick={handleAuthRedirect}>Get Started</Button>
+                    <Button className="w-full mt-4 rounded-full py-2" onClick={() => router.push('/auth')}>Get Started</Button>
                 </nav>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
