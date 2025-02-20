@@ -2,12 +2,13 @@
 
 import { Button } from "@/components/ui/button"
 import { Facebook, Twitter, Instagram, Linkedin, ArrowUpRight } from "lucide-react"
+import { useRouter } from "next/navigation";
 
 const navigation = {
     main: [
-      { name: "About", href: "#" },
-      { name: "Pricing", href: "#" },
-      { name: "Contact", href: "#" },
+      { name: "About", href: "/about" },
+      { name: "Pricing", href: "/pricing-plans" },
+      { name: "Contact", href: "/contact" },
     ],
     social: [
       { name: "Facebook", icon: Facebook, href: "#" },
@@ -18,6 +19,12 @@ const navigation = {
   }
 
 export default function Footer() {
+    
+      const router = useRouter();
+    
+      const handleAuthRedirect = () => {
+        router.push("/auth")
+      }
     return (
         <footer className="bg-gray-50 border-t border-gray-200">
             <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
@@ -42,6 +49,7 @@ export default function Footer() {
                     <Button
                         className="group inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 text-lg font-semibold text-white hover:bg-emerald-700 transition-colors"
                         variant="ghost"
+                        onClick={handleAuthRedirect}
                     >
                         Get Started
                         <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />

@@ -13,8 +13,14 @@ import { useState } from "react"
 import Footer from "@/components/footer"
 import Header from "@/components/header"
 import CallToBook from "@/components/call-to-action-1"
+import { useRouter } from "next/navigation"
 
 export default function Home() {
+  const router = useRouter();
+
+  const handleAuthRedirect = () => {
+    router.push("/auth")
+  }
 
   return (
     <div className="flex flex-col gap-10 overflow-hidden">
@@ -38,7 +44,7 @@ export default function Home() {
                 Welcome to Wallet Finance Tracker, where financial management meets simplicity and efficiency.
               </p>
               <div>
-                <Button className="text-md rounded-full px-6 py-3 mt-4">Get Started</Button>
+                <Button className="text-md rounded-full px-6 py-3 mt-4" onClick={handleAuthRedirect}>Get Started</Button>
               </div>
             </div>
             <div className="mt-10 lg:mt-0 lg:ml-10 relative">
