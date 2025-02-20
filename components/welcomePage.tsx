@@ -50,7 +50,7 @@ const WelcomePage = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.7, duration: 0.5 }}
                         >
-                            <Button className="w-full sm:w-auto text-lg py-6" onClick={() => router.push("/dashboard")}>
+                            <Button className="w-full sm:w-auto text-lg py-6" onClick={() => router.push("/application/dashboard")}>
                                 <LayoutDashboard className="mr-2 h-5 w-5" /> Go to Dashboard
                             </Button>
                             <Button
