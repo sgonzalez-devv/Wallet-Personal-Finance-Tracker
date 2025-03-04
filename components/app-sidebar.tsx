@@ -99,15 +99,15 @@ const data = {
       items: [
         {
           title: "Account",
-          url: "/application/settings/account",
+          url: "/application/account",
         },
         {
           title: "Notifications",
-          url: "/application/settings/notifications",
+          url: "/application/notifications",
         },
         {
           title: "Security",
-          url: "/application/settings/security",
+          url: "/application/security",
         },
       ],
     },
