@@ -1,170 +1,147 @@
 "use client"
 
-import * as React from "react"
-import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react"
+import type * as React from "react"
+import { Wallet, PieChart, TrendingUp, Calendar, Settings, CreditCard, Target } from "lucide-react"
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarRail,
-} from "@/components/ui/sidebar"
+import { NavMain } from "./nav-main"
+import { NavUser } from "./nav-user"
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail, useSidebar } from "@/components/ui/sidebar"
+import { AccountSwitcher } from "./account-switcher"
+import { NavAccounts } from "./nav-accounts"
 
-// This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "John Doe",
+    email: "john@example.com",
+    avatar: "/avatars/john-doe.jpg",
   },
-  teams: [
-    {
-      name: "Personal Workspace",
-      logo: GalleryVerticalEnd,
-      plan: "Personal Finance",
-    },
-    {
-      name: "Investment Workspace",
-      logo: AudioWaveform,
-      plan: "Investment Portfolio",
-    },
-    {
-      name: "House Workspace",
-      logo: Command,
-      plan: "House Finance",
-    },
-  ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: PieChart,
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "#",
+          title: "Show Everything",
+          url: "/application/dashboard"
+        }
+      ]
+    },
+    {
+      title: "Transactions",
+      url: "/application/transactions",
+      icon: Wallet,
+      items: [
+        {
+          title: "All Transactions",
+          url: "/application/transactions",
         },
         {
-          title: "Starred",
-          url: "#",
+          title: "Income",
+          url: "/application/transactions/income",
         },
         {
-          title: "Settings",
-          url: "#",
+          title: "Expenses",
+          url: "/application/transactions/expenses",
         },
       ],
     },
     {
-      title: "Models",
-      url: "#",
-      icon: Bot,
+      title: "Budgets",
+      url: "/application/budgets",
+      icon: Target,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: "Overview",
+          url: "/application/budgets",
         },
         {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
+          title: "Create Budget",
+          url: "/application/budgets/create",
         },
       ],
     },
     {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
+      title: "Investments",
+      url: "/application/investments",
+      icon: TrendingUp,
       items: [
         {
-          title: "Introduction",
-          url: "#",
+          title: "Portfolio",
+          url: "/application/investments/portfolio",
         },
         {
-          title: "Get Started",
-          url: "#",
+          title: "Performance",
+          url: "/application/investments/performance",
+        },
+      ],
+    },
+    {
+      title: "Bills",
+      url: "/application/bills",
+      icon: Calendar,
+      items: [
+        {
+          title: "Upcoming",
+          url: "/application/bills/upcoming",
         },
         {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
+          title: "Paid",
+          url: "/application/bills/paid",
         },
       ],
     },
     {
       title: "Settings",
-      url: "#",
-      icon: Settings2,
+      url: "/application/settings",
+      icon: Settings,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: "Account",
+          url: "/application/settings/account",
         },
         {
-          title: "Team",
-          url: "#",
+          title: "Notifications",
+          url: "/application/settings/notifications",
         },
         {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
+          title: "Security",
+          url: "/application/settings/security",
         },
       ],
     },
   ],
-  projects: [
+  accounts: [
     {
-      name: "My Plan",
-      url: "/pricing-plans",
-      icon: Frame,
+      name: "Checking Account",
+      balance: 5240.5,
+      icon: CreditCard,
     },
     {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
+      name: "Savings Account",
+      balance: 12750.75,
+      icon: Wallet,
     },
     {
-      name: "Travel",
-      url: "#",
-      icon: Map,
+      name: "Investment Account",
+      balance: 34500.0,
+      icon: TrendingUp,
     },
   ],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { isMobile } = useSidebar()
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <AccountSwitcher accounts={data.accounts} isMobile={isMobile} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavAccounts accounts={data.accounts} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
@@ -173,3 +150,4 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     </Sidebar>
   )
 }
+
