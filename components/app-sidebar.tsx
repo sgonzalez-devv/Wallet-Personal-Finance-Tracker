@@ -44,14 +44,6 @@ const data = {
           title: "All Transactions",
           url: "/application/transactions",
         },
-        {
-          title: "Income",
-          url: "/application/transactions/income",
-        },
-        {
-          title: "Expenses",
-          url: "/application/transactions/expenses",
-        },
       ],
     },
     {
