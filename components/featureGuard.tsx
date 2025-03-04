@@ -14,7 +14,7 @@ export default function FeatureGuard({ children, requiredFeature }: { children: 
         const checkAccess = async () => {
             const user = auth.currentUser;
             if (!user) {
-                router.push("/auth");
+                router.push("/restricted-access");
                 return;
             }
 
