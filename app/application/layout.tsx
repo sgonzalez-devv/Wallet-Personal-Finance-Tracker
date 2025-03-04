@@ -22,6 +22,7 @@ export default function AppLayout({
 }>) {
     return (
         <SidebarProvider>
+            {/* TO DO: Update the state of the sidebar so you can pass all the user info from here, so the state does not re-request when the user change pages inside /application/xxx */}
             <AppSidebar />
             <SidebarInset>
                 <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">

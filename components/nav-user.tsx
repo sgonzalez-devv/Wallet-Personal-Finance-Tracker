@@ -30,6 +30,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { useAuth } from "@/context/AuthContext"
+import { redirect } from "next/navigation"
 
 export function NavUser({
   user,
@@ -90,17 +91,9 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => redirect("/application/account")}>
                 <BadgeCheck />
                 Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCard />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                Notifications
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
