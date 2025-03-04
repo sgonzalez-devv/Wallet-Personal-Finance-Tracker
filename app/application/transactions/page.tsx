@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import {
   ArrowDownIcon,
@@ -9,7 +9,6 @@ import {
   CalendarIcon,
   CreditCard,
   DollarSign,
-  Filter,
   Search,
   ShoppingBag,
   Utensils,
@@ -140,7 +139,7 @@ const generateMockTransactions = (): Transaction[] => {
       ]
       category = categories[Math.floor(Math.random() * categories.length)]
 
-      const merchants: Record<TransactionCategory, string[]> = {
+      const merchants = {
         food: ["Restaurant", "Grocery Store", "Cafe"],
         shopping: ["Online Store", "Department Store", "Electronics Shop"],
         utilities: ["Electric Company", "Water Service", "Internet Provider"],
@@ -150,7 +149,7 @@ const generateMockTransactions = (): Transaction[] => {
         salary: ["Employer Inc."],
         investment: ["Investment Fund"],
         other: ["Miscellaneous", "Unknown", "Service"],
-      };
+      }
 
       const merchantOptions = merchants[category] || merchants.other
       merchant = merchantOptions[Math.floor(Math.random() * merchantOptions.length)]
@@ -171,8 +170,6 @@ const generateMockTransactions = (): Transaction[] => {
 
   return transactions.sort((a, b) => b.date.getTime() - a.date.getTime())
 }
-
-const mockTransactions = generateMockTransactions()
 
 // Transaction Item Component
 interface TransactionItemProps {
@@ -214,13 +211,19 @@ const TransactionItem: React.FC<TransactionItemProps> = ({ transaction }) => {
   )
 }
 
-export default function TransactionsPage() {
+const TransactionsPage: React.FC = () => {
+  const [isClient, setIsClient] = useState(false)
   const [activeTab, setActiveTab] = useState("recent")
   const [filterType, setFilterType] = useState<"all" | "income" | "expense">("all")
   const [searchQuery, setSearchQuery] = useState("")
   const [sortBy, setSortBy] = useState<"date" | "amount">("date")
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
-  const [transactions, setTransactions] = useState(mockTransactions)
+  const [transactions, setTransactions] = useState<Transaction[]>([])
+
+  useEffect(() => {
+    setIsClient(true)
+    setTransactions(generateMockTransactions())
+  }, [])
 
   const handleAddTransaction = (newTransaction: Omit<Transaction, "id">) => {
     const transactionWithId = {
@@ -333,6 +336,10 @@ export default function TransactionsPage() {
   }, [filteredTransactions])
 
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884D8", "#82CA9D"]
+
+  if (!isClient) {
+    return null // or a loading spinner
+  }
 
   return (
     <div className="container mx-auto py-10 px-4">
@@ -551,4 +558,6 @@ export default function TransactionsPage() {
     </div>
   )
 }
+
+export default TransactionsPage
 

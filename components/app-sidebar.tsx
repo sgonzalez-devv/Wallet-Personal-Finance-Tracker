@@ -57,7 +57,7 @@ const data = {
         },
         {
           title: "Create Budget",
-          url: "/application/budgets/create",
+          url: "/application/budgets/create-budget",
         },
       ],
     },
@@ -68,11 +68,7 @@ const data = {
       items: [
         {
           title: "Portfolio",
-          url: "/application/investments/portfolio",
-        },
-        {
-          title: "Performance",
-          url: "/application/investments/performance",
+          url: "/application/investment-portfolio",
         },
       ],
     },
@@ -83,11 +79,7 @@ const data = {
       items: [
         {
           title: "Upcoming",
-          url: "/application/bills/upcoming",
-        },
-        {
-          title: "Paid",
-          url: "/application/bills/paid",
+          url: "/application/bills",
         },
       ],
     },
