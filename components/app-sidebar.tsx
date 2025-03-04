@@ -8,12 +8,19 @@ import { NavUser } from "./nav-user"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail, useSidebar } from "@/components/ui/sidebar"
 import { AccountSwitcher } from "./account-switcher"
 import { NavAccounts } from "./nav-accounts"
+import { useAuth } from "@/context/AuthContext"
+
+
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { isMobile } = useSidebar()
+  const {user} = useAuth();
 
 const data = {
   user: {
-    name: "John Doe",
-    email: "john@example.com",
-    avatar: "/avatars/john-doe.jpg",
+    name: user?.displayName || "Guest",
+    email: user?.email || "john@example.com",
+    avatar: user?.photoURL || "/avatars/john-doe.jpg",
   },
   navMain: [
     {
@@ -92,25 +99,6 @@ const data = {
         },
       ],
     },
-    {
-      title: "Settings",
-      url: "/application/settings",
-      icon: Settings,
-      items: [
-        {
-          title: "Account",
-          url: "/application/settings/account",
-        },
-        {
-          title: "Notifications",
-          url: "/application/settings/notifications",
-        },
-        {
-          title: "Security",
-          url: "/application/settings/security",
-        },
-      ],
-    },
   ],
   accounts: [
     {
@@ -130,9 +118,6 @@ const data = {
     },
   ],
 }
-
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { isMobile } = useSidebar()
 
   return (
     <Sidebar collapsible="icon" {...props}>
